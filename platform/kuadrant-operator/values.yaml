@@ -6,3 +6,9 @@ catalogSource:
   displayName: "Kuadrant Operators"
   publisher: grpc
   pollInterval: 45m
+
+subscription:
+  channel: preview
+  installPlanApproval: Automatic
+  name: kuadrant-operator
+  startingCSV: kuadrant-operator.v0.0.0
