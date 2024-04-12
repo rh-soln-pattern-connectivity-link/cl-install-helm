@@ -1,0 +1,11 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: authorino
+spec:
+  endpoints:
+    - port: http
+  selector:
+    matchLabels:
+      app: authorino

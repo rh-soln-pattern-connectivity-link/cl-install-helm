@@ -1,0 +1,10 @@
+apiVersion: kuadrant.io/v1beta1
+kind: Kuadrant
+metadata:
+  name: {{ include "kuadrant.name" . }}
+spec:
+  limitador:
+    storage:
+      redis:
+        configSecretRef:
+          name: {{ .Values.redis.url }}
