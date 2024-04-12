@@ -1,0 +1,12 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: {{ include "kuadrant-operator.name" . }}-catalog
+spec:
+  sourceType: {{ .Values.catalogSource.sourceType }}
+  image: {{ .Values.catalogSource.image }}
+  displayName: {{ .Values.catalogSource.displayName }}
+  publisher: {{ .Values.catalogSource.grpc }}
+  updateStrategy:
+    registryPoll:
+      interval: {{ .Values.catalogSource.pollInterval }}
