@@ -4,3 +4,11 @@ redis:
 aws:
   accesskey:
   secretAccessKey:
+
+observability:
+  clusterRole: kuadrant-observability-job-role
+  job:
+    image: quay.io/kuadrant/observability-configure:latest
+  argocd:
+    enabled: true
+    syncwave: "1"

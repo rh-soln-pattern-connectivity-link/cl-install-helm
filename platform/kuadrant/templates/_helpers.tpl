@@ -60,3 +60,18 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+ArgoCD Syncwave
+*/}}
+{{- define "observability-job.argocd-syncwave" -}}
+{{- if .Values.observability.argocd }}
+{{- if and (.Values.observability.argocd.syncwave) (.Values.observability.argocd.enabled) -}}
+argocd.argoproj.io/sync-wave: "{{ .Values.observability.argocd.syncwave }}"
+{{- else }}
+{{- "{}" }}
+{{- end }}
+{{- else }}
+{{- "{}" }}
+{{- end }}
+{{- end }}
