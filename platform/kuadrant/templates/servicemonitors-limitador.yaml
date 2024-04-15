@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: limitador
+  name: {{ include "kuadrant.name" . }}-limitador
 spec:
   endpoints:
     - port: http
