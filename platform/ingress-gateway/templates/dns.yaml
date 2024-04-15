@@ -6,6 +6,6 @@ metadata:
 spec:
   routingStrategy: simple
   targetRef:
-    name:  {{ include "ingress-gateway.fullname" . }}
+    name:  {{ include "ingress-gateway.name" . }}
     group: gateway.networking.k8s.io
     kind: Gateway
