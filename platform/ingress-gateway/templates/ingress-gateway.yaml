@@ -1,0 +1,21 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: {{ include "ingress-gateway.name" . }}
+spec:
+  gatewayClassName: {{ .Values.gateway.class }}
+  listeners:
+    - allowedRoutes:
+        namespaces:
+          from: All
+      hostname: "{{ .Values.gateway.listeners.api.hostName }}"
+      name: api
+      port: 443
+      protocol: HTTPS
+      tls:
+        certificateRefs:
+          - group: ""
+            kind: Secret
+            name: api-tls
+        mode: Terminate
+

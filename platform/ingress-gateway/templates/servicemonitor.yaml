@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "ingress-gateway.name" . }}-service-monitor
+spec:
+  selector:
+    matchLabels:
+      istio.io/gateway-name: {{ include "ingress-gateway.name" . }}
+  endpoints:
+    - port: metrics
+      path: /stats/prometheus
+  

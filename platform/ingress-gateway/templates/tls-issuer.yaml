@@ -1,0 +1,22 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: {{ include "ingress-gateway.name" . }}-lets-encrypt-issuer
+spec:
+  acme:
+    email: {{ .Values.tlsIssuer.email }}
+    preferredChain: ""
+    privateKeySecretRef:
+      name: {{ .Values.tlsIssuer.privateKeySecretRef }}
+    server: {{ .Values.tlsIssuer.server }}
+    solvers:
+      - dns01:
+          route53:
+            hostedZoneID: {{ .Values.tlsIssuer.solvers.route53.hostedZoneId }}
+            region: {{ .Values.tlsIssuer.solvers.route53.region }}
+            accessKeyIDSecretRef:
+              key: {{ .Values.tlsIssuer.solvers.route53.accessKeyIDSecretRef.key }}
+              name: {{ .Values.tlsIssuer.solvers.route53.accessKeyIDSecretRef.name }}
+            secretAccessKeySecretRef:
+              key: {{ .Values.tlsIssuer.solvers.route53.secretAccessKeySecretRef.key }}
+              name: {{ .Values.tlsIssuer.solvers.route53.secretAccessKeySecretRef.name }}

@@ -1,0 +1,10 @@
+apiVersion: kuadrant.io/v1alpha1
+kind: ManagedZone
+metadata:
+  name: {{ include "ingress-gateway.name" . }}-aws-zone
+spec:
+  id: {{ .Values.awsZone.id }}
+  domainName: {{ .Values.awsZone.domainName }}
+  description: {{ .Values.awsZone.description }}
+  dnsProviderSecretRef:
+    name: {{ .Values.awsZone.dnsProviderSecretRef }}

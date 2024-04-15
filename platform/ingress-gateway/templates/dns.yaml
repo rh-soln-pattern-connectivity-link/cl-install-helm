@@ -1,0 +1,11 @@
+
+apiVersion: kuadrant.io/v1alpha1
+kind: DNSPolicy
+metadata:
+  name: {{ include "ingress-gateway.name" . }}-dnspolicy
+spec:
+  routingStrategy: simple
+  targetRef:
+    name:  {{ include "ingress-gateway.fullname" . }}
+    group: gateway.networking.k8s.io
+    kind: Gateway

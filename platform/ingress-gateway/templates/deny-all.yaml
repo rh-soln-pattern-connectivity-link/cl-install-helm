@@ -1,0 +1,25 @@
+apiVersion: kuadrant.io/v1beta2
+kind: AuthPolicy
+metadata:
+  name: {{ include "ingress-gateway.name" . }}-deny-all
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: Gateway
+    name: {{ include "ingress-gateway.fullname" . }}
+  rules:
+    authorization:
+      deny-all:
+        opa:
+          rego: "allow = false"
+    response:
+      unauthorized:
+        headers:
+          "content-type":
+            value: application/json
+        body:
+          value: |
+            {
+              "error": "Forbidden",
+              "message": "Access denied by default by the gateway operator. If you are the administrator of the service, create a specific auth policy for the route."
+            }

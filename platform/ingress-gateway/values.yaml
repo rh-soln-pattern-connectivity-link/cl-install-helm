@@ -1,0 +1,25 @@
+gateway:
+  class: istio
+  listeners:
+    api:
+      hostName:
+
+tlsIssuer:
+  email:
+  privateKeySecretRef: le-production
+  server: https://acme-staging-v02.api.letsencrypt.org/directory
+  solvers:
+    route53:
+      hostedZoneID:
+      region:
+      accessKeyIDSecretRef:
+        key: AWS_ACCESS_KEY_ID
+        name: 
+      secretAccessKeySecretRef:
+        key: AWS_SECRET_ACCESS_KEY
+        name: 
+awsZone:
+  id:
+  domainName:
+  description: "kuadrant managed zone"
+  dnsProviderSecretRef:

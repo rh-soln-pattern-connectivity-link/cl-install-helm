@@ -1,0 +1,16 @@
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ingress-gateway.name" . }}
+  labels:
+    istio.io/gateway-name: {{ include "ingress-gateway.name" . }}
+spec:
+  selector:
+    istio.io/gateway-name: {{ include "ingress-gateway.name" . }}
+  ports:
+  - name: metrics
+    protocol: TCP
+    port: 15020
+    targetPort: 15020
+ 
