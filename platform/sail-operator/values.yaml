@@ -1,0 +1,9 @@
+---
+
+subscription:
+  channel: 3.0-dp1
+  installPlanApproval: Automatic
+  name: sailoperator
+  source: community-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: ""
