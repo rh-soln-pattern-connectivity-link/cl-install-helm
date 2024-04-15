@@ -7,4 +7,4 @@ spec:
   domainName: {{ .Values.awsZone.domainName }}
   description: {{ .Values.awsZone.description }}
   dnsProviderSecretRef:
-    name: {{ .Values.awsZone.dnsProviderSecretRef }}
+    name: {{ include "ingress-gateway.name" . }}-aws-credentials

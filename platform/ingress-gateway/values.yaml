@@ -22,4 +22,7 @@ awsZone:
   id:
   domainName:
   description: "kuadrant managed zone"
-  dnsProviderSecretRef:
+
+aws:
+  accesskey:
+  secretAccessKey:
