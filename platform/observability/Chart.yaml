@@ -17,3 +17,6 @@ dependencies:
   - name: metrics-job
     version: 0.1.0
     repository: file://metrics-job
+  - name: grafana
+    version: 0.1.0
+    repository: file://grafana
