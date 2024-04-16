@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "apicurio-studio-operator.name" . }}
+  labels:
+    {{- include "apicurio-studio-operator.labels" . | nindent 4 }}  
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+       {{- include "apicurio-studio-operator.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "apicurio-studio-operator.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "apicurio-studio-operator.name" . }}
+      containers:
+        - name: apicurio-studio-operator
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "apicurio-studio-operator"

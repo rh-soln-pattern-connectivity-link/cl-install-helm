@@ -1,0 +1,6 @@
+replicaCount: 1
+
+image:
+  repository: quay.io/lbroudoux/apicurio-studio-operator
+  pullPolicy: Always
+  tag: "latest"
