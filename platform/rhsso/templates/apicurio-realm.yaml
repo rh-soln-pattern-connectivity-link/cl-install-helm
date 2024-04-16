@@ -1,0 +1,65 @@
+---
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakRealm
+metadata:
+  name: apicurio
+  labels:
+    {{- include "rhsso.labels" . | nindent 4 }}    
+spec:
+  instanceSelector:
+    matchLabels:
+      {{- include "rhsso.selectorLabels" . | nindent 6 }}
+  realm:
+    enabled: true
+    id: apicurio
+    realm: apicurio
+    registrationAllowed: true
+    registrationEmailAsUsername: true
+    rememberMe: true
+    sslRequired: none
+    clients:
+      - clientId: apicurio-api
+        secret: chYONU5+MiWocygUJqSRb+cen4Y=
+        clientAuthenticatorType: client-secret
+        bearerOnly: true
+        standardFlowEnabled: true
+        directAccessGrantsEnabled: true
+        defaultClientScopes:
+          - role_list
+          - profile
+          - email
+        optionalClientScopes:
+          - address
+          - phone
+          - offline_access
+      - clientId: apicurio-studio
+        secret: QvH/sygBShNjZHd7vD3/lqI2Zh0=
+        clientAuthenticatorType: client-secret
+        publicClient: true
+        standardFlowEnabled: true
+        directAccessGrantsEnabled: true
+        rootUrl: https://{{ .Values.apicurio.service }}-{{ .Values.apicurio.namespace }}.{{ .Values.openshiftDomain }}
+        redirectUris:
+          - https://{{ .Values.apicurio.service }}-{{ .Values.apicurio.namespace }}.{{ .Values.openshiftDomain }}/*
+        baseUrl: https://{{ .Values.apicurio.service }}-{{ .Values.apicurio.namespace }}.{{ .Values.openshiftDomain }}
+        webOrigins: 
+          - "+"
+        attributes:
+          saml.assertion.signature: 'false'
+          saml.force.post.binding: 'false'
+          saml.multivalued.roles: 'false'
+          saml.encrypt: 'false'
+          saml_force_name_id_format: 'false'
+          saml.client.signature: 'false'
+          saml.authnstatement: 'false'
+          saml.server.signature: 'false'
+          saml.server.signature.keyinfo.ext: 'false'
+          saml.onetimeuse.condition: 'false'
+        defaultClientScopes:
+          - role_list
+          - profile
+          - email
+        optionalClientScopes:
+          - address
+          - phone
+          - offline_access

@@ -1,0 +1,11 @@
+---
+kind: Keycloak
+apiVersion: keycloak.org/v1alpha1
+metadata:
+  name: {{ include "rhsso.name" . }}
+  labels:
+    {{- include "rhsso.labels" . | nindent 4 }}
+spec:
+  instances: {{ .Values.replicaCount }}
+  externalAccess:
+    enabled: {{ .Values.externalAccess }}
