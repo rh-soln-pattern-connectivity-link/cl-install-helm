@@ -11,3 +11,6 @@ dependencies:
   - name: thanos-receive
     version: 0.1.0
     repository: file://thanos-receive
+  - name: monitoring
+    version: 0.1.0
+    repository: file://monitoring
