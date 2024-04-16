@@ -14,3 +14,6 @@ dependencies:
   - name: monitoring
     version: 0.1.0
     repository: file://monitoring
+  - name: metrics-job
+    version: 0.1.0
+    repository: file://metrics-job
