@@ -6,7 +6,7 @@ aws:
   secretAccessKey:
 
 observability:
-  clusterRole: kuadrant-observability-job-role
+  clusterRole: job-role
   job:
     image: quay.io/kuadrant/observability-configure:latest
   argocd:
