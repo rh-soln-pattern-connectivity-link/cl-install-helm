@@ -22,8 +22,8 @@ spec:
       volumes:
         - name: custom-resource-state
           configMap:
-          defaultMode: 420
-          name: custom-resource-state
+            defaultMode: 420
+            name: custom-resource-state
       automountServiceAccountToken: true
       containers:
         - volumeMounts:
