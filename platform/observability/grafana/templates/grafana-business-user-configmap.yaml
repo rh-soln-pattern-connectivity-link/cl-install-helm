@@ -185,7 +185,7 @@ data:
               },
               "editorMode": "code",
               "expr": "sum(rate(istio_requests_total{}[5m])) by (destination_service_name) * on(destination_service_name) group_right label_replace(gatewayapi_httproute_labels{name=~\"${route_name}\",exported_namespace=~\"${api_namespace}\"}, \"destination_service_name\", \"$1\",\"service\", \"(.+)\")",
-              "legendFormat": "API: {{name}}",
+              "legendFormat": "API: {{`{{name}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -359,7 +359,7 @@ data:
               },
               "editorMode": "code",
               "expr": "sum(rate(istio_requests_total{}[5m])) by (destination_service_name, request_url_path) * on(destination_service_name) group_left label_replace(gatewayapi_httproute_labels{name=~\"${route_name}\",exported_namespace=~\"${api_namespace}\"}, \"destination_service_name\", \"$1\",\"service\", \"(.+)\")",
-              "legendFormat": "{{request_url_path}}",
+              "legendFormat": "{{`{{request_url_path}}`}}",
               "range": true,
               "refId": "A"
             }

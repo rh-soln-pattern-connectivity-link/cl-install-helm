@@ -1150,7 +1150,7 @@ data:
               },
               "editorMode": "code",
               "expr": "sum(rate(istio_requests_total{}[5m])) by (destination_service_name) * on(destination_service_name) group_right label_replace(gatewayapi_httproute_labels{name=~\"${route_name}\",exported_namespace=~\"${api_policy_namespace}\"}, \"destination_service_name\", \"$1\",\"service\", \"(.+)\")",
-              "legendFormat": "API: {{name}}",
+              "legendFormat": "API: {{`{{name}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -1242,7 +1242,7 @@ data:
               },
               "editorMode": "code",
               "expr": "(sort_desc(sum(irate(container_network_receive_bytes_total{exported_namespace=~\"$api_policy_namespace\"}[1h:5m])\n* on (exported_namespace,pod)\ngroup_left(workload,workload_type) namespace_workload_pod:kube_pod_owner:relabel{exported_namespace=~\"$api_policy_namespace\", workload=~\".+\"}) by (workload))) * on(workload) label_replace(gatewayapi_httproute_labels{exported_namespace=~\"$api_policy_namespace\",name=~\"$route_name\"}, \"workload\", \"$1\",\"service\", \"(.+)\")\n",
-              "legendFormat": "API: {{workload}}",
+              "legendFormat": "API: {{`{{workload}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -1332,7 +1332,7 @@ data:
               },
               "editorMode": "code",
               "expr": "sum(rate(istio_requests_total{response_code=~\"4.*|5.*\"}[5m])) by (destination_service_name) * on(destination_service_name) group_right label_replace(gatewayapi_httproute_labels{exported_namespace=~\"${api_policy_namespace}\"}, \"destination_service_name\", \"$1\",\"service\", \"(.+)\")",
-              "legendFormat": "Total Errors: {{name}} ",
+              "legendFormat": "Total Errors: {{`{{name}}`}} ",
               "range": true,
               "refId": "A"
             },
@@ -1344,7 +1344,7 @@ data:
               "editorMode": "code",
               "expr": "sum(rate(istio_requests_total{response_code=~\"4.*\"}[5m])) by (destination_service_name) * on(destination_service_name) group_right label_replace(gatewayapi_httproute_labels{exported_namespace=~\"${api_policy_namespace}\"}, \"destination_service_name\", \"$1\",\"service\", \"(.+)\")",
               "hide": false,
-              "legendFormat": "4xx: {{name}} ",
+              "legendFormat": "4xx: {{`{{name}}`}} ",
               "range": true,
               "refId": "B"
             },
@@ -1356,7 +1356,7 @@ data:
               "editorMode": "code",
               "expr": "sum(rate(istio_requests_total{response_code=~\"5.*\"}[5m])) by (destination_service_name) * on(destination_service_name) group_right label_replace(gatewayapi_httproute_labels{exported_namespace=~\"${api_policy_namespace}\"}, \"destination_service_name\", \"$1\",\"service\", \"(.+)\")",
               "hide": false,
-              "legendFormat": "5xx: {{name}} ",
+              "legendFormat": "5xx: {{`{{name}}`}} ",
               "range": true,
               "refId": "C"
             },
@@ -1368,7 +1368,7 @@ data:
               "editorMode": "code",
               "expr": "sum(rate(istio_requests_total{response_code=~\"404\"}[5m])) by (destination_service_name) * on(destination_service_name) group_right label_replace(gatewayapi_httproute_labels{exported_namespace=~\"${api_policy_namespace}\"}, \"destination_service_name\", \"$1\",\"service\", \"(.+)\")",
               "hide": false,
-              "legendFormat": "404: {{name}}",
+              "legendFormat": "404: {{`{{name}}`}}",
               "range": true,
               "refId": "D"
             },
@@ -1380,7 +1380,7 @@ data:
               "editorMode": "code",
               "expr": "sum(rate(istio_requests_total{response_code=~\"401\"}[5m])) by (destination_service_name) * on(destination_service_name) group_right label_replace(gatewayapi_httproute_labels{exported_namespace=~\"${api_policy_namespace}\"}, \"destination_service_name\", \"$1\",\"service\", \"(.+)\")",
               "hide": false,
-              "legendFormat": "401: {{name}}",
+              "legendFormat": "401: {{`{{name}}`}}",
               "range": true,
               "refId": "E"
             },
@@ -1392,7 +1392,7 @@ data:
               "editorMode": "code",
               "expr": "sum(rate(istio_requests_total{response_code=~\"429\"}[5m])) by (destination_service_name) * on(destination_service_name) group_right label_replace(gatewayapi_httproute_labels{exported_namespace=~\"${api_policy_namespace}\"}, \"destination_service_name\", \"$1\",\"service\", \"(.+)\")",
               "hide": false,
-              "legendFormat": "429: {{name}}",
+              "legendFormat": "429: {{`{{name}}`}}",
               "range": true,
               "refId": "F"
             },
@@ -1404,7 +1404,7 @@ data:
               "editorMode": "code",
               "expr": "sum(rate(istio_requests_total{response_code=~\"500\"}[5m])) by (destination_service_name) * on(destination_service_name) group_right label_replace(gatewayapi_httproute_labels{exported_namespace=~\"${api_policy_namespace}\"}, \"destination_service_name\", \"$1\",\"service\", \"(.+)\")",
               "hide": false,
-              "legendFormat": "500: {{name}}",
+              "legendFormat": "500: {{`{{name}}`}}",
               "range": true,
               "refId": "G"
             },
@@ -1416,7 +1416,7 @@ data:
               "editorMode": "code",
               "expr": "sum(rate(istio_requests_total{response_code=~\"501\"}[5m])) by (destination_service_name) * on(destination_service_name) group_right label_replace(gatewayapi_httproute_labels{exported_namespace=~\"${api_policy_namespace}\"}, \"destination_service_name\", \"$1\",\"service\", \"(.+)\")",
               "hide": false,
-              "legendFormat": "501: {{name}}",
+              "legendFormat": "501: {{`{{name}}`}}",
               "range": true,
               "refId": "H"
             },
@@ -1428,7 +1428,7 @@ data:
               "editorMode": "code",
               "expr": "sum(rate(istio_requests_total{response_code=~\"503\"}[5m])) by (destination_service_name) * on(destination_service_name) group_right label_replace(gatewayapi_httproute_labels{exported_namespace=~\"${api_policy_namespace}\"}, \"destination_service_name\", \"$1\",\"service\", \"(.+)\")",
               "hide": false,
-              "legendFormat": "503: {{name}}",
+              "legendFormat": "503: {{`{{name}}`}}",
               "range": true,
               "refId": "I"
             }
@@ -1605,7 +1605,7 @@ data:
               "editorMode": "code",
               "expr": "sum(\n  node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{exported_namespace=~\"$api_policy_namespace\"}\n* on(exported_namespace,pod)\n  group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{exported_namespace=~\"$api_policy_namespace\", workload_type=\"deployment\"}\n) by (workload, workload_type)\n* on(workload) label_replace(gatewayapi_httproute_labels{exported_namespace=~\"$api_policy_namespace\",name=~\"$route_name\"}, \"workload\", \"$1\",\"deployment\", \"(.+)\")\n",
               "format": "time_series",
-              "legendFormat": "API: {{workload}}",
+              "legendFormat": "API: {{`{{workload}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -1782,7 +1782,7 @@ data:
               "editorMode": "code",
               "expr": "sum(\n    container_memory_working_set_bytes{exported_job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", exported_namespace=~\"$api_policy_namespace\", container!=\"\", image!=\"\"}\n  * on(exported_namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{exported_namespace=~\"$api_policy_namespace\", workload_type=\"deployment\"}\n) by (workload, workload_type)\n* on(workload) label_replace(gatewayapi_httproute_labels{exported_namespace=~\"$api_policy_namespace\",name=~\"$route_name\"}, \"workload\", \"$1\",\"deployment\", \"(.+)\")\n",
               "format": "time_series",
-              "legendFormat": "API: {{workload}}",
+              "legendFormat": "API: {{`{{workload}}`}}",
               "range": true,
               "refId": "A"
             }
