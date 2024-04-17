@@ -1,0 +1,35 @@
+apiVersion: studio.apicur.io/v1alpha1
+kind: ApicurioStudio
+metadata:
+  name: {{ include "apicurio-studio.name" . }}
+  labels:
+    {{- include "apicurio-studio.labels" . | nindent 4 }}
+spec:
+  apiModule:
+    image: "{{ .Values.apiModule.image.repository }}:{{ .Values.apiModule.image.tag }}"
+    resources:
+      {{- toYaml .Values.apiModule.resources | nindent 6 }}
+  database:
+    database: {{ .Values.database.database }}
+    driver: {{ .Values.database.driver }}
+    install: {{ .Values.database.install }}
+    type: {{ .Values.database.type }}
+    volumeSize: {{ .Values.database.volumeSize }}
+  features:
+    asyncAPI: {{ .Values.features.asyncApi }}
+    graphQL: {{ .Values.features.graphQL }}
+    microcks:
+      clientId: {{ .Values.features.microcks.clientId }}
+  keycloak:
+    install: {{ .Values.keycloak.install }}
+    realm: {{ .Values.keycloak.realm }}
+    url: {{ .Values.keycloak.url }}
+  name: {{ include "apicurio-studio.name" . }}
+  studioModule:
+    image: "{{ .Values.studioModule.image.repository }}:{{ .Values.studioModule.image.tag }}"
+    resources:
+      {{- toYaml .Values.studioModule.resources | nindent 6 }}
+  wsModule:
+    image: "{{ .Values.wsModule.image.repository }}:{{ .Values.wsModule.image.tag }}"
+    resources:
+      {{- toYaml .Values.wsModule.resources | nindent 6 }}

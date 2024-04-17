@@ -1,0 +1,53 @@
+database:
+  database: apicuriodb
+  driver: postgresql
+  install: true
+  type: postgresql9
+  volumeSize: 1Gi
+
+features:
+  asyncAPI: false
+  graphQL: false
+  microcks:
+    clientId: microcks-serviceaccount
+
+apiModule:
+  image:
+    repository: apicurio/apicurio-studio-api
+    tag: "latest"
+  resources:
+    limits:
+      cpu: '1'
+      memory: 1700Mi
+    requests:
+      cpu: 100m
+      memory: 800Mi
+
+studioModule:
+  image:
+    repository: apicurio/apicurio-studio-ui
+    tag: "latest"
+  resources:
+    limits:
+      cpu: '1'
+      memory: 1300Mi
+    requests:
+      cpu: 100m
+      memory: 600Mi
+
+wsModule:
+  image:
+    repository: apicurio/apicurio-studio-ws
+    tag: "latest"
+  resources:
+    limits:
+      cpu: '1'
+      memory: 1800Mi
+    requests:
+      cpu: 100m
+      memory: 900Mi
+
+keycloak:
+  install: false
+  url:
+  realm: apicurio
