@@ -48,6 +48,10 @@ spec:
               mountPath: /grafana-dashboard-definitions/0/grafana-mgc-metrics
             - name: grafana-platform-eng
               mountPath: /grafana-dashboard-definitions/0/grafana-platform-eng
+            - name: grafana-app-developer
+              mountPath: /grafana-dashboard-definitions/0/grafana-app-developer
+            - name: grafana-business-user
+              mountPath: /grafana-dashboard-definitions/0/grafana-business-user
             - name: grafana-gatewayclasses
               mountPath: /grafana-dashboard-definitions/0/grafana-gatewayclasses
             - name: grafana-gateways
@@ -89,6 +93,12 @@ spec:
         - name: grafana-platform-eng
           configMap:
             name: {{ include "grafana.name" . }}-platform-eng
+        - name: grafana-app-developer
+          configMap:
+            name: {{ include "grafana.name" . }}-app-developer
+        - name: grafana-business-user
+          configMap:
+            name: {{ include "grafana.name" . }}-business-user
         - name: grafana-gatewayclasses
           configMap:
             name: {{ include "grafana.name" . }}-gatewayclasses
