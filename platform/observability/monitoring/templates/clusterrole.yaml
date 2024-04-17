@@ -125,3 +125,13 @@ rules:
     verbs:
       - list
       - watch
+   - apiGroups:
+      - "kuadrant.io"
+    resources:
+      - tlspolicies
+      - dnspolicies
+      - ratelimitpolicies
+      - authpolicies
+    verbs:
+      - list
+      - watch
