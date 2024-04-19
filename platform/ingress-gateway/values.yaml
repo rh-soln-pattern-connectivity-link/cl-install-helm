@@ -6,8 +6,8 @@ gateway:
 
 tlsIssuer:
   email:
-  privateKeySecretRef: le-production
-  server: https://acme-v02.api.letsencrypt.org/directory
+  privateKeySecretRef: le-staging
+  server: https://acme-staging-v02.api.letsencrypt.org/directory
   solvers:
     route53:
       hostedZoneID:
