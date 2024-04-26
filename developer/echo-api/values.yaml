@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  repository: quay.io/3scale/authorino
+  pullPolicy: IfNotPresent
+  tag: "echo-api"
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8080
+
+resources: {}
