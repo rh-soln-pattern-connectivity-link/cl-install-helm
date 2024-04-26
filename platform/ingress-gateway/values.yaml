@@ -3,6 +3,7 @@ gateway:
   listeners:
     api:
       hostName:
+  geoCode: 
 
 tlsIssuer:
   email:
@@ -26,3 +27,11 @@ awsZone:
 aws:
   accesskey:
   secretAccessKey:
+
+dns:
+  routingStrategy: loadbalanced
+  loadBalancing:
+    geo: 
+      defaultGeo: US
+    weighted:
+      defaultWeight: 120 

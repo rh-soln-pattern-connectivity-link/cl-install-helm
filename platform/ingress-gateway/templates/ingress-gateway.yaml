@@ -2,6 +2,8 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: {{ include "ingress-gateway.name" . }}
+  labels:
+    kuadrant.io/lb-attribute-geo-code: {{ .Values.gateway.geoCode }}
 spec:
   gatewayClassName: {{ .Values.gateway.class }}
   listeners:

@@ -4,7 +4,11 @@ kind: DNSPolicy
 metadata:
   name: {{ include "ingress-gateway.name" . }}-dnspolicy
 spec:
-  routingStrategy: simple
+  routingStrategy: {{ .Values.dns.routingStrategy }}
+  {{- if eq .Values.dns.routingStrategy "loadbalanced" }}
+  loadBalancing:
+    {{- toYaml .Values.dns.loadbalancing | nindent 4 }}
+  {{- end }}
   targetRef:
     name:  {{ include "ingress-gateway.name" . }}
     group: gateway.networking.k8s.io
