@@ -50,11 +50,11 @@
         "showSearch": true,
         "showStarred": false,
         "tags": [
-          "connectivity-link"
+          "kuadrant"
         ]
       },
       "pluginVersion": "8.5.5",
-      "title": "Connectivity Link Dashboards",
+      "title": "Kuadrant Dashboards",
       "type": "dashlist"
     },
     {
@@ -603,7 +603,7 @@
   "schemaVersion": 36,
   "style": "dark",
   "tags": [
-    "connectivity-link"
+    "kuadrant"
   ],
   "templating": {
     "list": [
