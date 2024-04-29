@@ -7,4 +7,4 @@ spec:
     storage:
       redis:
         configSecretRef:
-          name: {{ .Values.redis.url }}
+          name: {{ include "kuadrant.name" . }}-redis-config
