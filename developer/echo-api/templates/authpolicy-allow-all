@@ -1,0 +1,14 @@
+apiVersion: kuadrant.io/v1beta2
+kind: AuthPolicy
+metadata:
+  name: {{ include "echo-api.name" . }}-allow-all
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: {{ include "echo-api.name" . }}
+    namespace: {{ .Release.Namespace }}
+  rules:
+    authentication:
+  routeSelectors:
+    - matches: []
