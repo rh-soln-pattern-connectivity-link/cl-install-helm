@@ -21,3 +21,9 @@ service:
   port: 8080
 
 resources: {}
+
+httpRoute:
+  gateway:
+    name:
+    namespace: 
+  hostName:
