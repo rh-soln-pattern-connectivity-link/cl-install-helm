@@ -12,3 +12,4 @@ spec:
     - backendRefs:
         - name: {{ include "echo-api.name" . }}
           port: {{ .Values.service.port }}
+          namespace: {{ .Release.Namespace }}
