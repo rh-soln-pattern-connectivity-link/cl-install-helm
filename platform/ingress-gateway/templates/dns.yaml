@@ -7,7 +7,7 @@ spec:
   routingStrategy: {{ .Values.dns.routingStrategy }}
   {{- if eq .Values.dns.routingStrategy "loadbalanced" }}
   loadBalancing:
-    {{- toYaml .Values.dns.loadbalancing | nindent 4 }}
+    {{- toYaml .Values.dns.loadBalancing | nindent 4 }}
   {{- end }}
   targetRef:
     name:  {{ include "ingress-gateway.name" . }}
