@@ -32,7 +32,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P8D9ADF90DB2E3ECF"
+        "uid": "${datasource}"
       },
       "description": "Shows the number of pods by status in the selected namespace. Note this is an 'Instant' value i.e. it uses the latest value instead of querying over a range.",
       "fieldConfig": {
@@ -83,7 +83,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P8D9ADF90DB2E3ECF"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -102,7 +102,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P8D9ADF90DB2E3ECF"
+        "uid": "${datasource}"
       },
       "fieldConfig": {
         "defaults": {
@@ -162,7 +162,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P8D9ADF90DB2E3ECF"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -288,7 +288,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P8D9ADF90DB2E3ECF"
+        "uid": "${datasource}"
       },
       "description": "Shows the total number of Goroutines by pod in the selected namespace.",
       "fieldConfig": {
@@ -366,7 +366,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P8D9ADF90DB2E3ECF"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "go_goroutines{namespace=~\"$namespace\"}",
@@ -381,7 +381,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P8D9ADF90DB2E3ECF"
+        "uid": "${datasource}"
       },
       "description": "Shows pod CPU usage for each pod in the namespace. If set, pod CPU requests and limits are also shown. The legend includes a suffix of the pod name.",
       "fieldConfig": {
@@ -458,7 +458,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P8D9ADF90DB2E3ECF"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=~\"$namespace\"}[1m])) by(pod)",
@@ -469,7 +469,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P8D9ADF90DB2E3ECF"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "kube_pod_container_resource_requests{namespace=~\"$namespace\", resource=\"cpu\"}",
@@ -481,7 +481,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P8D9ADF90DB2E3ECF"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "kube_pod_container_resource_limits{namespace=~\"$namespace\", resource=\"cpu\"}",
@@ -497,7 +497,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P8D9ADF90DB2E3ECF"
+        "uid": "${datasource}"
       },
       "description": "Shows pod memory usage in MiB (based on RSS) for each pod in the namespace. If set, pod memory requests and limits are also shown. The legend includes a suffix of the pod name.",
       "fieldConfig": {
@@ -573,7 +573,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P8D9ADF90DB2E3ECF"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "sum(container_memory_rss{namespace=~\"$namespace\"}) by (pod)",
@@ -584,7 +584,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P8D9ADF90DB2E3ECF"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "kube_pod_container_resource_requests{namespace=~\"$namespace\", resource=\"memory\"}",
@@ -596,7 +596,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P8D9ADF90DB2E3ECF"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "kube_pod_container_resource_limits{namespace=~\"$namespace\", resource=\"memory\"}",
@@ -612,7 +612,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P8D9ADF90DB2E3ECF"
+        "uid": "${datasource}"
       },
       "description": "Shows the rate of resources being queued for processing by each controller in the selected namespace.",
       "fieldConfig": {
@@ -689,7 +689,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P8D9ADF90DB2E3ECF"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "sum(rate(workqueue_adds_total{namespace=~\"$namespace\"}[5m])) by (name)",
@@ -704,7 +704,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P8D9ADF90DB2E3ECF"
+        "uid": "${datasource}"
       },
       "description": "Shows the queue size for each resource controller in the selected namespace.",
       "fieldConfig": {
@@ -781,7 +781,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P8D9ADF90DB2E3ECF"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "sum(rate(workqueue_depth{namespace=~\"$namespace\"}[5m])) by (name)",
@@ -796,7 +796,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "P8D9ADF90DB2E3ECF"
+        "uid": "${datasource}"
       },
       "description": "Shows the queue processing latency for each resource controller in the selected namespace.",
       "fieldConfig": {
@@ -876,7 +876,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "P8D9ADF90DB2E3ECF"
+            "uid": "${datasource}"
           },
           "editorMode": "code",
           "expr": "histogram_quantile(0.99, sum(rate(workqueue_queue_duration_seconds_bucket{namespace=~\"$namespace\"}[$__range])) by (name, le))",
@@ -923,7 +923,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "P8D9ADF90DB2E3ECF"
+          "uid": "${datasource}"
         },
         "definition": "label_values(kube_pod_info, exported_namespace)",
         "hide": 0,
