@@ -10,6 +10,8 @@ resources:
   - configure-job.yaml
   - prometheus-auth-secret.yaml
   - telemetry.yaml
+  - alerts/slo-availability.yaml
+  - alerts/slo-latency.yaml
 
 # Patch grafana deployment to include dashboard configmaps
 patchesJson6902:
