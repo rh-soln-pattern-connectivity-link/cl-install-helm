@@ -7,7 +7,7 @@ resources:
   - github.com/Kuadrant/gateway-api-state-metrics?ref=main
   - github.com/Kuadrant/gateway-api-state-metrics/config/examples/dashboards?ref=main
   - crb.yaml
-  - configure-job.yaml
+  # - configure-job.yaml
   - prometheus-auth-secret.yaml
   - telemetry.yaml
   - alerts/slo-availability.yaml
