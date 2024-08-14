@@ -3,8 +3,3 @@ kind: Kuadrant
 metadata:
   name: {{ include "kuadrant.name" . }}
 spec:
-  limitador:
-    storage:
-      redis-cached:
-        configSecretRef:
-          name: {{ include "kuadrant.name" . }}-redis-config

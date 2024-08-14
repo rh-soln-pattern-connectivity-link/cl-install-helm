@@ -1,15 +1,14 @@
 apiVersion: kuadrant.io/v1beta2
 kind: RateLimitPolicy
 metadata:
-  name: {{ include "echo-api.name" . }}
+  name: {{ include "ingress-gateway.name" . }}-rlp-lowlimits
 spec:
   targetRef:
     group: gateway.networking.k8s.io
-    kind: HTTPRoute
-    name: {{ include "echo-api.name" . }}
-    namespace: {{ .Release.Namespace }}
+    kind: Gateway
+    name: {{ include "ingress-gateway.name" . }}
   limits:
-    "echo-api":
+    "default-limits":
       rates:
       - limit: 5
         duration: 10
