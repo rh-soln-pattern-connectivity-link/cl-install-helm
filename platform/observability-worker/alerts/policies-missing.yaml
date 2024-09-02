@@ -1,4 +1,10 @@
-groups:
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: policies-missing
+  namespace: monitoring
+spec:
+  groups:
   - name: policy-rules
     rules:
     - alert: GatewayWithoutDnsPolicy
