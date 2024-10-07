@@ -9,7 +9,7 @@ spec:
     group: gateway.networking.k8s.io
     kind: HTTPRoute
     name: {{ include "echo-api.name" . }}
-    namespace: {{ include "echo-api.name" . }}
+    {{ include "echo-api.name" . }}
   rules:
     authentication:
   routeSelectors:
