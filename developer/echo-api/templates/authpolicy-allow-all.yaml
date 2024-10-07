@@ -2,6 +2,8 @@ apiVersion: kuadrant.io/v1beta2
 kind: AuthPolicy
 metadata:
   name: {{ include "echo-api.name" . }}-allow-all
+  labels:
+    {{- include "echo-api.labels" . | nindent 4 }}
 spec:
   targetRef:
     group: gateway.networking.k8s.io
