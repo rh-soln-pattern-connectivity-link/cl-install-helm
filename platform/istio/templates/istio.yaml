@@ -1,5 +1,5 @@
-apiVersion: operator.istio.io/v1alpha1
 kind: Istio
+apiVersion: sailoperator.io/v1alpha1
 metadata:
   name: {{ include "istio.name" . }}
 spec:
