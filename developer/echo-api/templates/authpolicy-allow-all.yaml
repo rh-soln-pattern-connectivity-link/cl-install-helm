@@ -10,4 +10,10 @@ spec:
     kind: HTTPRoute
     name: {{ include "echo-api.name" . }}
   rules:
-    authentication:
+    authorization:
+      allow:
+        metrics: false
+        opa:
+          allValues: false
+          rego: allow = true
+        priority: 0
