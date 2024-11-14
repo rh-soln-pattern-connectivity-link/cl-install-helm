@@ -1,10 +1,13 @@
-apiVersion: operator.istio.io/v1alpha1
 kind: Istio
+apiVersion: sailoperator.io/v1alpha1
 metadata:
   name: {{ include "istio.name" . }}
 spec:
   version: {{ .Values.istio.version }}
-  namespace: {{ .Release.Namespace }}
+  namespace: istio-system
+  updateStrategy:
+    type: InPlace
+
   # Disable autoscaling to reduce dev resources
   values:
     pilot:

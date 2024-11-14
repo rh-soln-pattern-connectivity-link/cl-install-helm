@@ -3,6 +3,7 @@ kind: HTTPRoute
 metadata:
   name: {{ include "echo-api.name" . }}
   labels:
+    {{- include "echo-api.labels" . | nindent 4 }}  
     deployment: {{ include "echo-api.name" . }}
     service: {{ include "echo-api.name" . }}
 spec:
