@@ -11,4 +11,4 @@ spec:
     "default-limits":
       rates:
       - limit: 5
-        window: 1s
+        window: 10s
