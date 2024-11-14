@@ -3,16 +3,12 @@ apiVersion: sailoperator.io/v1alpha1
 metadata:
   name: {{ include "istio.name" . }}
 spec:
+  version: {{ .Values.istio.version }}
   namespace: istio-system
   updateStrategy:
     type: InPlace
+
+  # Disable autoscaling to reduce dev resources
   values:
-    meshConfig:
-      extensionProviders:
-        - envoyExtAuthzGrpc:
-            port: 50051
-            service: authorino-authorino-authorization.kuadrant-system.svc.cluster.local
-          name: kuadrant-authorization
     pilot:
       autoscaleEnabled: false
-  version: v1.23.0
