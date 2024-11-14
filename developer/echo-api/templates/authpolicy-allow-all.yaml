@@ -11,5 +11,3 @@ spec:
     name: {{ include "echo-api.name" . }}
   rules:
     authentication:
-  routeSelectors:
-    - matches: []
