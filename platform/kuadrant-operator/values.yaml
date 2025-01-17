@@ -1,12 +1,5 @@
 namespace: kuadrant-system
 
-catalogSource:
-  sourceType: grpc
-  image: quay.io/kuadrant/kuadrant-operator-catalog:latest
-  displayName: "Kuadrant Operators"
-  publisher: grpc
-  pollInterval: 45m
-
 subscription:
   channel: stable
   installPlanApproval: Automatic
