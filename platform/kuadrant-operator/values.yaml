@@ -1,14 +1,8 @@
 namespace: kuadrant-system
 
-catalogSource:
-  sourceType: grpc
-  image: quay.io/kuadrant/kuadrant-operator-catalog:latest
-  displayName: "Kuadrant Operators"
-  publisher: grpc
-  pollInterval: 45m
-
 subscription:
-  channel: preview
+  channel: stable
   installPlanApproval: Automatic
-  name: kuadrant-operator
-  startingCSV: kuadrant-operator.v0.0.0
+  name: rhcl-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace

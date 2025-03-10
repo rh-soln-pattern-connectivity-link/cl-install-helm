@@ -6,7 +6,5 @@ spec:
   channel: {{ .Values.subscription.channel }}
   installPlanApproval: {{ .Values.subscription.installPlanApproval }}
   name: {{ .Values.subscription.name }}
-  source: {{ include "kuadrant-operator.name" . }}-catalog
-  sourceNamespace: {{ .Release.Namespace }}
-  startingCSV: {{ .Values.subscription.startingCSV }}
- 
+  source: {{ .Values.subscription.source }}
+  sourceNamespace: {{ .Values.subscription.sourceNamespace }}
