@@ -36,3 +36,9 @@ dns:
       defaultGeo: US
     weighted:
       defaultWeight: 120 
+
+
+registry:
+  password:
+  username:
+  dockerjson:
