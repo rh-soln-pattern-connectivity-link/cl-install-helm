@@ -20,6 +20,12 @@ resources:
   - ./thanos/ingress-query.yaml
   - ./thanos/ingress-receive-router.yaml
   - grafana.yaml
+  - ./thanos-receive-router-service-loadbalancer.yaml
+  - ./prometheus/istio/service-monitor-istiod.yaml
+  - ./prometheus/operators.yaml
+  - ./prometheus/additional-scrape-configs.yaml
+  - ./prometheus/monitors/operators.yaml
+
 
 # Patch grafana deployment to include dashboard configmaps
 patchesJson6902:
@@ -65,4 +71,16 @@ configMapGenerator:
   namespace: monitoring
   files:
   - ./grafana/dashboards/grafana-dashboard-mgc-metrics.json
+
+- name: grafana-controller-runtime-metrics
+  files:
+  - ./grafana/dashboards/controller-runtime-metrics.json
+
+- name: grafana-controller-resources-metrics
+  files:
+  - ./grafana/dashboards/controller-resources-metrics.json    
+
+- name: grafana-dns-operator
+  files:
+  - ./grafana/dashboards/dns-operator.json    
 

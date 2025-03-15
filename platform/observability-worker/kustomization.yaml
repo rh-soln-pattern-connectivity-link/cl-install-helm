@@ -4,8 +4,8 @@ kind: Kustomization
 resources:
   - role.yaml
   - kube-state-metrics.yaml
-  - github.com/Kuadrant/gateway-api-state-metrics?ref=main
-  - github.com/Kuadrant/gateway-api-state-metrics/config/examples/dashboards?ref=main
+  - github.com/Kuadrant/gateway-api-state-metrics/config/kuadrant?ref=0.7.0
+  - github.com/Kuadrant/gateway-api-state-metrics/config/examples/dashboards?ref=0.7.0
   - crb.yaml
   # - configure-job.yaml
   - prometheus-auth-secret.yaml

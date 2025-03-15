@@ -10,7 +10,6 @@ metadata:
   labels:
     app.kubernetes.io/component: SLO
     app.kubernetes.io/managed-by: sloth
-    openshift.io/prometheus-rule-evaluation-scope: leaf-prometheus
   name: latency-slo
   namespace: monitoring
 spec:

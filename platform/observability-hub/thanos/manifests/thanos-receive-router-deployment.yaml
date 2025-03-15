@@ -32,7 +32,6 @@ spec:
         - --grpc-address=0.0.0.0:10901
         - --http-address=0.0.0.0:10902
         - --remote-write.address=0.0.0.0:19291
-        - --http.config=/var/lib/thanos-http/config.yaml
         - --receive.replication-factor=1
         - --receive.hashrings-file=/var/lib/thanos-receive/hashrings.json
         - --label=replica="$(NAME)"
@@ -58,9 +57,6 @@ spec:
             path: /-/healthy
             port: 10902
             scheme: HTTP
-            httpHeaders:
-              - name: Authorization
-                value: Basic YWxpY2U6YWxpY2VwYXNzd29yZDFkZW1v
           periodSeconds: 30
         name: thanos-receive
         ports:
@@ -76,26 +72,20 @@ spec:
             path: /-/ready
             port: 10902
             scheme: HTTP
-            httpHeaders:
-              - name: Authorization
-                value: Basic YWxpY2U6YWxpY2VwYXNzd29yZDFkZW1v
           periodSeconds: 5
         resources: {}
         terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
         - mountPath: /var/lib/thanos-receive
           name: hashring-config
-        - mountPath:  /var/lib/thanos-http
-          name: thanos-receive-auth  
       nodeSelector:
         kubernetes.io/os: linux
+      securityContext:
+        fsGroup: 65534
+        runAsUser: 65534
       serviceAccountName: thanos-receive-router
       terminationGracePeriodSeconds: 30
       volumes:
       - configMap:
           name: hashring-config
         name: hashring-config
-      - name: thanos-receive-auth
-        secret:  
-          secretName: thanos-receive-auth  
-
