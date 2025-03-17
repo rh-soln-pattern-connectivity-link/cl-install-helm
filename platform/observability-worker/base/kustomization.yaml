@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  # Configure scraping of kuadrant operators
+  - ./operators.yaml
+  # Configure scraping of istio metrics
+  - ./istio
+  # Install gateway-api-state-metrics configuration
+  - github.com/Kuadrant/gateway-api-state-metrics/config/kuadrant?ref=0.6.0

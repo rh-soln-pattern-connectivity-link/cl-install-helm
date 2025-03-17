@@ -1,0 +1,58 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../../base
+- github.com/prometheus-operator/kube-prometheus?ref=release-0.13 
+
+# Scale down alertmanager to save on resources
+patches:
+- patch: |-
+    kind: Alertmanager
+    metadata:
+      name: main
+    spec:
+      replicas: 1
+  target:
+    kind: Alertmanager
+    name: main
+# Enable remote write of metrics to thanos, and scale down to save on resources
+- patch: |-
+    kind: Prometheus
+    metadata:
+      name: k8s
+    spec:
+      replicas: 1
+      remoteWrite:
+      - url: http://thanos-receive-router-skupper.monitoring.svc.cluster.local:19291/api/v1/receive
+        writeRelabelConfigs:
+        - action: replace
+          replacement: REPLACED_DYNAMICALLY
+          targetLabel: cluster_id
+  target:
+    kind: Prometheus
+    name: k8s
+# Give prometheus permissions to get metrics and read services, endpoints & pods
+- path: rbac/cluster_role.yaml
+# Mount custom-resource-state config into kube-state-metrics pod to configure scraping gateway state metrics
+- path: ksm_deployment_patch.yaml
+  target:
+    group: apps
+    kind: Deployment
+    name: kube-state-metrics
+    version: v1
+# Allow kube-state-metrics to read gateway & kuadrant resources
+- path: rbac/ksm_clusterrole_patch.yaml
+  target:
+    group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: kube-state-metrics
+    version: v1
+# Remove grafana from workers
+- target:
+    labelSelector: "app.kubernetes.io/component=grafana"
+  patch: |
+    $patch: delete
+    kind: Kustomization
+    metadata:
+      name: whatever

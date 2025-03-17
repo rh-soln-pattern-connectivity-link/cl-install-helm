@@ -1,9 +1,0 @@
-image:
-  repository: quay.io/kuadrant/observability-configure
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
-
-argocd:
-  enabled: true
-  syncwave: "2"

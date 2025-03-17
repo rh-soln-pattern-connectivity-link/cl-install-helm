@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+  - cluster-monitoring-config.yaml
+  # Install an instance of kube-state-metrics specifically for gateway & kuadrant metrics
+  - kube-state-metrics.yaml
+
