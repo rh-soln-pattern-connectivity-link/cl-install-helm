@@ -1,0 +1,82 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  labels:
+    app.kubernetes.io/instance: thanos-ruler
+    app.kubernetes.io/name: thanos-ruler
+    app.kubernetes.io/version: v0.29.0
+  name: thanos-ruler
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: thanos-ruler
+      app.kubernetes.io/name: thanos-ruler
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: thanos-ruler
+        app.kubernetes.io/name: thanos-ruler
+        app.kubernetes.io/version: v0.29.0
+    spec:
+      nodeSelector:
+        kubernetes.io/os: linux
+      restartPolicy: Always
+      serviceAccountName: thanos-ruler
+      schedulerName: default-scheduler
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app.kubernetes.io/name
+                      operator: In
+                      values:
+                        - thanos-ruler
+                namespaces:
+                  - monitoring
+                topologyKey: kubernetes.io/hostname
+      terminationGracePeriodSeconds: 120
+      securityContext: {}
+      containers:
+        - resources: {}
+          terminationMessagePath: /dev/termination-log
+          name: thanos-ruler
+          ports:
+            - name: grpc
+              containerPort: 10901
+              protocol: TCP
+            - name: web
+              containerPort: 10902
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: thanos-ruler-monitoring-data
+              mountPath: /thanos/data
+          terminationMessagePolicy: FallbackToLogsOnError
+          image: 'quay.io/thanos/thanos:v0.29.0'
+          args:
+            - rule
+            - '--data-dir=/thanos/data'
+            - '--eval-interval=30s'
+            - '--rule-file=/etc/thanos/rules/*/*.yaml'
+            - '--query=thanos-query.monitoring.svc:9090'
+      serviceAccount: thanos-ruler
+      volumes:
+        - name: thanos-ruler-monitoring-data
+          emptyDir: {}
+      dnsPolicy: ClusterFirst
+  serviceName: thanos-ruler
+  podManagementPolicy: OrderedReady
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+  revisionHistoryLimit: 10
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain

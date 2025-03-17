@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+  - grafana/rbac.yaml
+  - grafana/datasource.yaml
+
+patches:
+  - path: grafana/grafana-patch.yaml
+  - target:
+      kind: Subscription
+      name: grafana-operator
+    path: ./grafana/subscription-patch.yaml

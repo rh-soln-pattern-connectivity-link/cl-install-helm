@@ -1,0 +1,12 @@
+- op: add
+  path: /metadata/annotations/skupper.io~1address
+  value: thanos-receive-router-skupper
+- op: add
+  path: /metadata/annotations/skupper.io~1port
+  value: "19291"
+- op: add
+  path: /metadata/annotations/skupper.io~1proxy
+  value: tcp
+- op: add
+  path: /metadata/annotations/skupper.io~1target
+  value: thanos-receive-router
